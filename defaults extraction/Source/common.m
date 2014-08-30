@@ -70,11 +70,28 @@ NSDictionary *diffDictionaries(NSDictionary *oldDictionary, NSDictionary *newDic
 
 void applyPatchToDefaults(NSDictionary *patchPictionary, NSString *defaultsName)
 {
-	NSUserDefaults * const defaults = [[NSUserDefaults alloc] initWithSuiteName:defaultsName];
-	
-	[defaults setValuesForKeysWithDictionary:patchPictionary];
-	
-	if (![defaults synchronize]) {
-		NSLog(@"Could not write defaults to disk.");
-	}
+    NSURL *defaultsURL = [NSURL fileURLWithPath:pathToDefaults(defaultsName)];
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithContentsOfURL:defaultsURL];
+    [dictionary setValuesForKeysWithDictionary:patchPictionary];
+    [dictionary writeToURL:defaultsURL atomically:YES];
+}
+
+NSDictionary *readDictionary(NSURL *source)
+{
+    return [NSDictionary dictionaryWithContentsOfURL:source];
+}
+
+void writeDictionary(NSDictionary *dictionary, NSURL *destination, DictionaryOutputFormat outputFormat)
+{
+    // output format not implemented
+    
+    NSError *error;
+    NSData *data = [NSPropertyListSerialization dataWithPropertyList:dictionary format:NSPropertyListXMLFormat_v1_0 options:0 error:&error];
+    
+    if (data == nil) {
+        ObLog(error);
+        return;
+    }
+    
+    [data writeToURL:destination atomically:YES];
 }
