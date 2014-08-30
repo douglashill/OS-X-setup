@@ -7,6 +7,19 @@
 
 #import "common.h"
 
+@implementation NSDictionary (DHFileReading)
+
++ (NSDictionary *)dh_dictionaryWithContentsOfFile:(NSString *)path
+{
+	NSDictionary *dictionaryFromPropertyList = [self dictionaryWithContentsOfFile:path];
+	
+	if (dictionaryFromPropertyList) return dictionaryFromPropertyList;
+	
+	return [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:0 error:NULL];
+}
+
+@end
+
 int main(int argc, const char * argv[])
 {
     @autoreleasepool {
@@ -33,7 +46,7 @@ int main(int argc, const char * argv[])
             return 3;
         }
         
-        NSDictionary *diff = diffDictionaries([NSDictionary dictionaryWithContentsOfFile:path1], [NSDictionary dictionaryWithContentsOfFile:path2]);
+        NSDictionary *diff = diffDictionaries([NSDictionary dh_dictionaryWithContentsOfFile:path1], [NSDictionary dh_dictionaryWithContentsOfFile:path2]);
         writeDictionary(diff, [NSURL fileURLWithPath:destination], 0);
     }
     return 0;
