@@ -13,16 +13,16 @@ class TypeMapping:
 		self.type_string = type_string
 		self.value_transformer = value_transformer
 
+# Unsupported property list types: data, date, array, array-add, dict, dict-add
+# bool must be checked before int because it is a subtype of int
+mappings = [
+	TypeMapping([str, unicode], "string", lambda val: val),
+	TypeMapping([bool],         "bool",   lambda val: "TRUE" if val else "FALSE"),
+	TypeMapping([int, long],    "int",    lambda val: str(val)),
+	TypeMapping([float],        "float",  lambda val: str(val)),
+]
+
 def map_type(value):
-	# Unsupported property list types: data, date, array, array-add, dict, dict-add
-	# bool must be checked before int because it is a subtype of int
-	mappings = [
-		TypeMapping([str, unicode], "string", lambda val: val),
-		TypeMapping([bool],         "bool",   lambda val: "TRUE" if val else "FALSE"),
-		TypeMapping([int, long],    "int",    lambda val: str(val)),
-		TypeMapping([float],        "float",  lambda val: str(val)),
-	]
-	
 	for mapping in mappings:
 		for py_type in mapping.py_types:
 			if isinstance(value, py_type):
