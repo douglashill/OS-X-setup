@@ -52,7 +52,7 @@ static void linkUp(NSURL *sourceRoot, NSURL *destinationRoot) {
 		// Move dest to Trash
 		NSError *trashError;
 		if (![[NSFileManager defaultManager] trashItemAtURL:destURL resultingItemURL:NULL error:&trashError]) {
-//			NSLog(@"%@", trashError);
+			NSLog(@"%@", trashError);
 		}
 		
 		NSError *intermediateDirCreateError;
