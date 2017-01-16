@@ -10,6 +10,10 @@
 		A5AD218B1996363F002440E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AD218A1996363F002440E2 /* main.m */; };
 		A5AD219719966D03002440E2 /* NSURL+DHResourceValues.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AD219619966D03002440E2 /* NSURL+DHResourceValues.m */; };
 		A5AD219A19967170002440E2 /* NSURL+DHRebase.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AD219919967170002440E2 /* NSURL+DHRebase.m */; };
+		A5B3D41F1E2D6B34004E47EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B3D41E1E2D6B34004E47EA /* AppDelegate.m */; };
+		A5B3D4221E2D6B34004E47EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B3D4211E2D6B34004E47EA /* main.m */; };
+		A5B3D4241E2D6B34004E47EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B3D4231E2D6B34004E47EA /* Assets.xcassets */; };
+		A5B3D4271E2D6B34004E47EA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5B3D4251E2D6B34004E47EA /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,7 +23,24 @@
 		A5AD219619966D03002440E2 /* NSURL+DHResourceValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+DHResourceValues.m"; sourceTree = "<group>"; };
 		A5AD219819967170002440E2 /* NSURL+DHRebase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+DHRebase.h"; sourceTree = "<group>"; };
 		A5AD219919967170002440E2 /* NSURL+DHRebase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+DHRebase.m"; sourceTree = "<group>"; };
+		A5B3D41B1E2D6B34004E47EA /* xctemplater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xctemplater.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5B3D41D1E2D6B34004E47EA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A5B3D41E1E2D6B34004E47EA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A5B3D4211E2D6B34004E47EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A5B3D4231E2D6B34004E47EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A5B3D4261E2D6B34004E47EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		A5B3D4281E2D6B34004E47EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A5B3D4181E2D6B34004E47EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		A5AD217B1996363F002440E2 = {
@@ -30,6 +51,7 @@
 				A5AD219619966D03002440E2 /* NSURL+DHResourceValues.m */,
 				A5AD219819967170002440E2 /* NSURL+DHRebase.h */,
 				A5AD219919967170002440E2 /* NSURL+DHRebase.m */,
+				A5B3D41C1E2D6B34004E47EA /* xctemplater */,
 				A5AD21851996363F002440E2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -38,8 +60,22 @@
 			isa = PBXGroup;
 			children = (
 				A5AD21841996363F002440E2 /* linkup */,
+				A5B3D41B1E2D6B34004E47EA /* xctemplater.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A5B3D41C1E2D6B34004E47EA /* xctemplater */ = {
+			isa = PBXGroup;
+			children = (
+				A5B3D41D1E2D6B34004E47EA /* AppDelegate.h */,
+				A5B3D41E1E2D6B34004E47EA /* AppDelegate.m */,
+				A5B3D4231E2D6B34004E47EA /* Assets.xcassets */,
+				A5B3D4251E2D6B34004E47EA /* MainMenu.xib */,
+				A5B3D4281E2D6B34004E47EA /* Info.plist */,
+				A5B3D4211E2D6B34004E47EA /* main.m */,
+			);
+			path = xctemplater;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -60,6 +96,23 @@
 			productReference = A5AD21841996363F002440E2 /* linkup */;
 			productType = "com.apple.product-type.tool";
 		};
+		A5B3D41A1E2D6B34004E47EA /* xctemplater */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5B3D42B1E2D6B34004E47EA /* Build configuration list for PBXNativeTarget "xctemplater" */;
+			buildPhases = (
+				A5B3D4171E2D6B34004E47EA /* Sources */,
+				A5B3D4181E2D6B34004E47EA /* Frameworks */,
+				A5B3D4191E2D6B34004E47EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = xctemplater;
+			productName = xctemplater;
+			productReference = A5B3D41B1E2D6B34004E47EA /* xctemplater.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -68,6 +121,12 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Douglas Hill";
+				TargetAttributes = {
+					A5B3D41A1E2D6B34004E47EA = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = A5AD217F1996363F002440E2 /* Build configuration list for PBXProject "linkup" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -75,6 +134,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = A5AD217B1996363F002440E2;
 			productRefGroup = A5AD21851996363F002440E2 /* Products */;
@@ -82,9 +142,22 @@
 			projectRoot = "";
 			targets = (
 				A5AD21831996363F002440E2 /* linkup */,
+				A5B3D41A1E2D6B34004E47EA /* xctemplater */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A5B3D4191E2D6B34004E47EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5B3D4241E2D6B34004E47EA /* Assets.xcassets in Resources */,
+				A5B3D4271E2D6B34004E47EA /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A5AD21801996363F002440E2 /* Sources */ = {
@@ -97,7 +170,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5B3D4171E2D6B34004E47EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5B3D4221E2D6B34004E47EA /* main.m in Sources */,
+				A5B3D41F1E2D6B34004E47EA /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A5B3D4251E2D6B34004E47EA /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5B3D4261E2D6B34004E47EA /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A5AD21901996363F002440E2 /* Debug */ = {
@@ -184,6 +277,53 @@
 			};
 			name = Release;
 		};
+		A5B3D4291E2D6B34004E47EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = xctemplater/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = co.douglashill.xctemplater;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A5B3D42A1E2D6B34004E47EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = xctemplater/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = co.douglashill.xctemplater;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -204,6 +344,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		A5B3D42B1E2D6B34004E47EA /* Build configuration list for PBXNativeTarget "xctemplater" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5B3D4291E2D6B34004E47EA /* Debug */,
+				A5B3D42A1E2D6B34004E47EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
