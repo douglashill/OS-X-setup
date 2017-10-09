@@ -36,15 +36,22 @@ extension Process {
     }
 }
 
-let allDomainsString = try! lauchedDefaultsProcess(withArguments: ["domains"]).readAllOutputString().trimmingCharacters(in: .whitespacesAndNewlines)
-var domains = allDomainsString.components(separatedBy: ", ")
+func doStuff() {
+    let repoURL = URL(fileURLWithPath: "/Users/Douglas/Development/SyncedPreferences/", isDirectory: true)
 
-let desktop = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask)[0]
-let syncedPrefs = desktop.appendingPathComponent("SyncedPreferences", isDirectory: true)
+    let blacklist = try! Set(NSString(contentsOf: repoURL.appendingPathComponent("blacklist.txt", isDirectory: false), encoding: 4).components(separatedBy: .newlines))
 
-for domain in domains {
-    let process = lauchedDefaultsProcess(withArguments: ["export", domain, "-"])
-    let plistData = process.readAllOutputData()
+    let allDomainsString = try! lauchedDefaultsProcess(withArguments: ["domains"]).readAllOutputString().trimmingCharacters(in: .whitespacesAndNewlines)
+    let domains = allDomainsString.components(separatedBy: ", ").filter { blacklist.contains($0) == false }
 
-    try! plistData.write(to: syncedPrefs.appendingPathComponent(domain, isDirectory: false).appendingPathExtension("plist"))
+    let syncedPrefs = repoURL.appendingPathComponent("data", isDirectory: true)
+
+    for domain in domains {
+        let process = lauchedDefaultsProcess(withArguments: ["export", domain, "-"])
+        let plistData = process.readAllOutputData()
+
+        try! plistData.write(to: syncedPrefs.appendingPathComponent(domain, isDirectory: false).appendingPathExtension("plist"))
+    }
 }
+
+doStuff()
