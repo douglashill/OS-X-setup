@@ -6,6 +6,18 @@
 #import "NSURL+DHRebase.h"
 #import "NSURL+DHResourceValues.h"
 
+
+/* Note this script is broken for Xcode templates.
+
+ Instead manually link
+ cd ~/Library/Developer/Xcode/
+ ln -s ../../Mobile\ Documents/com~apple~CloudDocs/Settings/Link/Library/Developer/Xcode/Templates/ Templates
+
+ It might be better just to have a list of links to set up rather than infering from the file system. Not that many to cover.
+
+ */
+
+
 static NSSet *linkSources(NSURL *source) {
 	
 	NSArray *const keys = @[NSURLIsDirectoryKey, NSURLIsPackageKey, NSURLParentDirectoryURLKey];
@@ -28,6 +40,10 @@ static void linkUp(NSURL *sourceRoot, NSURL *destinationRoot) {
 	
 	// Walk source, finding all the leaf directories
 	NSSet *sources = linkSources(sourceRoot);
+
+    if (sources.count == 0) {
+        NSLog(@"ℹ️ No link sources found in %@", sourceRoot);
+    }
 	
 	// For each leaf directory, look for the equivalent in destination
 	for (NSURL *sourceURL in sources) {
@@ -35,7 +51,7 @@ static void linkUp(NSURL *sourceRoot, NSURL *destinationRoot) {
 		
 		// Stop if dest is a symlink to source
 		if ([[[NSFileManager defaultManager] destinationOfSymbolicLinkAtPath:[destURL path] error:NULL] isEqualToString:[sourceURL path]]) {
-			NSLog(@"Skipping %@", sourceURL);
+			NSLog(@"ℹ️ Skipping %@", sourceURL);
 			continue;
 		}
 		
@@ -45,37 +61,37 @@ static void linkUp(NSURL *sourceRoot, NSURL *destinationRoot) {
 		for (NSURL *url in contents) {
 			NSError *copyError;
 			if (![[NSFileManager defaultManager] copyItemAtURL:url toURL:[url dh_URLByRebasingFromBase:destURL ontoBase:sourceURL] error:&copyError]) {
-				NSLog(@"%@", [copyError localizedDescription]);
+				NSLog(@"❌ %@", [copyError localizedDescription]);
 			}
 		}
 		
 		// Move dest to Trash
 		NSError *trashError;
 		if (![[NSFileManager defaultManager] trashItemAtURL:destURL resultingItemURL:NULL error:&trashError]) {
-			NSLog(@"%@", trashError);
+			NSLog(@"❌ %@", trashError);
 		}
 		
 		NSError *intermediateDirCreateError;
 		if (![[NSFileManager defaultManager] createDirectoryAtURL:[destURL URLByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:nil error:&intermediateDirCreateError]) {
-			NSLog(@"%@", intermediateDirCreateError);
+			NSLog(@"❌ %@", intermediateDirCreateError);
 		}
 		
 		// Create symlink at dest pointing to source
 		NSError *symlinkCreateError;
 		// We are naming variables to match `ln`, which differs from the NSFileManager nomenclature.
 		if (![[NSFileManager defaultManager] createSymbolicLinkAtURL:destURL withDestinationURL:sourceURL error:&symlinkCreateError]) {
-			NSLog(@"%@", symlinkCreateError);
+			NSLog(@"❌ %@", symlinkCreateError);
 			continue;
 		}
 		
-		NSLog(@"Linked %@ to %@", destURL, sourceURL);
+		NSLog(@"✅ Linked %@ to %@", destURL.path, sourceURL.path);
 	}
 }
 
 int main(int argc, const char * argv[]) {
 	@autoreleasepool {
 		if (argc < 2) {
-			NSLog(@"Too few arguments. Usage: %s source_directory [destination_directory]", argv[0]);
+			NSLog(@"❌ Too few arguments. Usage: %s source_directory [destination_directory]", argv[0]);
 			return 1;
 		}
 		
